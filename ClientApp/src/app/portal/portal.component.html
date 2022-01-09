@@ -1,35 +1,9 @@
 <div class="container-fluid bg-white">
-  <div class="d-flex flex-wrap justify-content-center py-3 border-bottom">
-    <a
-      href="/"
-      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-    >
-      <svg class="bi me-2" width="40" height="32">
-        <use xlink:href="#bootstrap" />
-      </svg>
-      <span class="fs-4">FINANCIAL </span
-      ><span class="fs-4 text-success">PORTAL</span>
-    </a>
-
-    <ul class="nav nav-pills">
-      <li class="nav-item btn btn-outline-danger">
-        <a href="#" class="nav-link text-danger" aria-current="page">Logout</a>
-      </li>
-    </ul>
-  </div>
+<app-top-nav-bar></app-top-nav-bar>
 </div>
 <div class="container-fluid bg-light py-5" style="height: 100%">
-  <!-- <div class="container" style="height: 80vh">
-    <app-portal-sidebar></app-portal-sidebar>
-    <app-portal-account-summary></app-portal-account-summary>
-  </div> -->
-  <!-- <div class="container" style="height: 80vh">
-    <app-portal-sidebar></app-portal-sidebar>
-    <app-portal-summary></app-portal-summary>
-  </div> -->
   <div class="container" style="height: 80vh">
     <app-portal-sidebar></app-portal-sidebar>
-    <app-portal-accounts></app-portal-accounts>
+    <router-outlet></router-outlet>
   </div>
-
 </div>

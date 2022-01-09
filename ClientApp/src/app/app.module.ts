@@ -5,26 +5,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PortalAccountSummaryComponent } from './portal/portal-account-summary/portal-account-summary.component';
 import { PortalAccountsComponent } from './portal/portal-accounts/portal-accounts.component';
-import { PortalAddTransationComponent } from './portal/portal-add-transation/portal-add-transation.component';
 import { PortalSidebarComponent } from './portal/portal-sidebar/portal-sidebar.component';
 import { PortalSummaryComponent } from './portal/portal-summary/portal-summary.component';
 import { PortalComponent } from './portal/portal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PortalCardsComponent } from './portal/portal-cards/portal-cards.component';
+import { TopNavBarComponent } from './portal/top-nav-bar/top-nav-bar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TopNavBarComponent,
     PortalComponent,
     PortalSidebarComponent,
     PortalAccountSummaryComponent,
     PortalAccountsComponent,
     PortalSummaryComponent,
-    PortalAddTransationComponent
+    PortalCardsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

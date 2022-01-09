@@ -31,6 +31,7 @@
         role="tab"
         aria-controls="v-pills-profile"
         aria-selected="false"
+        routerLink="/bankaccounts"
       >
         Bank Accounts
       </button>
@@ -43,9 +44,23 @@
         role="tab"
         aria-controls="v-pills-messages"
         aria-selected="false"
+        routerLink="/summary"
       >
         Households
       </button>
+      <button
+      class="nav-link text-success btn-success"
+      id="v-pills-messages-tab"
+      data-bs-toggle="pill"
+      data-bs-target="#v-pills-messages"
+      type="button"
+      role="tab"
+      aria-controls="v-pills-messages"
+      aria-selected="false"
+      routerLink="/accounts"
+    >
+      Households
+    </button>
     </div>
   </div>
 </div>
