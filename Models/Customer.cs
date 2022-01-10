@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace FinancialPortal.Models
@@ -7,25 +8,22 @@ namespace FinancialPortal.Models
     //A customer can have many accounts.
     public class Customer
     {
-            //https://stackoverflow.com/questions/23811912/database-of-bank-accounts
-            [Key]
-            [JsonProperty("customerID")]
-            public int CustomerID { get; set; }
+        //https://stackoverflow.com/questions/23811912/database-of-bank-accounts
+        [Key]
+        public long CustomerId { get; set; }
 
-            [JsonProperty("firstName")]
-            public string FirstName { get; set; }
+        public string FirstName { get; set; }
 
-            [JsonProperty("lastName")]
-            public string LastName { get; set; }
+        public string LastName { get; set; }
 
-            [JsonProperty("age")]
-            public int Age { get; set; }
+        public int Age { get; set; }
 
-            [JsonProperty("phoneNumber")]
-            public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
-            [JsonProperty("address")]
-            public Address Address { get; set; }
-        
+        public Address Address { get; set; }
+
+        [ForeignKey("Address")]
+        public long AddressFKId { get; set; }
+
     }
 }

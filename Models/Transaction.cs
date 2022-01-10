@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace FinancialPortal.Models
@@ -9,16 +10,14 @@ namespace FinancialPortal.Models
     public class Transaction
     {
         [Key]
-        [JsonProperty("customerAccountCreationTimeStamp")]
-        public long TransactionID { get; set; }
+        public long TransactionId { get; set; }
 
-        [JsonProperty("customerAccountCreationTimeStamp")]
-        public string TransactionTimeStamp { get; set; }
 
-        [JsonProperty("customerAccountCreationTimeStamp")]
         public long TransationAmount { get; set; }
 
-        [JsonProperty("customerAccountCreationTimeStamp")]
         public Account Account { get; set; }
+
+        [ForeignKey("Account")]
+        public long AccountFKId { get; set; }
     }
 }

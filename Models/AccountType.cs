@@ -7,10 +7,9 @@ namespace FinancialPortal.Models
     public class AccountType
     {
         [Key]
-        [JsonProperty("accountTypeID")]
-        public int AccountTypeID { get; set; }
+        public long AccountTypeId { get; set; }
         // needs enums
-        [JsonProperty("accountTypeName")]
         public string AccountTypeName { get; set; }
+
     }
 }

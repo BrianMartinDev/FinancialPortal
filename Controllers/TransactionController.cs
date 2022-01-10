@@ -42,7 +42,7 @@ namespace FinancialPortal.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTransaction(long id, Transaction model)
         {
-            if (id != model.TransactionID)
+            if (id != model.TransactionId)
             {
                 return BadRequest();
             }
@@ -56,7 +56,7 @@ namespace FinancialPortal.Controllers
         public async Task<ActionResult<Transaction>> InsertTransaction([FromBody] Transaction model)
         {
             await _repository.CreateAsync<Transaction>(model);
-            return CreatedAtAction("GetTransaction", new { id = model.TransactionID }, model);
+            return CreatedAtAction("GetTransaction", new { id = model.TransactionId }, model);
         }
 
         [HttpDelete("{id}")]

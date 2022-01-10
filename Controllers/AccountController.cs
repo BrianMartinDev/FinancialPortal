@@ -42,7 +42,7 @@ namespace FinancialPortal.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAccount(long id, Account model)
         {
-            if (id != model.AccountID)
+            if (id != model.AccountId)
             {
                 return BadRequest();
             }
@@ -56,7 +56,7 @@ namespace FinancialPortal.Controllers
         public async Task<ActionResult<Account>> InsertAccount([FromBody] Account model)
         {
             await _repository.CreateAsync<Account>(model);
-            return CreatedAtAction("GetAccount", new { id = model.AccountID }, model);
+            return CreatedAtAction("GetAccount", new { id = model.AccountId }, model);
         }
 
         [HttpDelete("{id}")]

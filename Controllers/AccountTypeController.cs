@@ -42,7 +42,7 @@ namespace FinancialPortal.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAccountType(long id, AccountType model)
         {
-            if (id != model.AccountTypeID)
+            if (id != model.AccountTypeId)
             {
                 return BadRequest();
             }
@@ -56,7 +56,7 @@ namespace FinancialPortal.Controllers
         public async Task<ActionResult<AccountType>> InsertAccountType([FromBody] AccountType model)
         {
             await _repository.CreateAsync<AccountType>(model);
-            return CreatedAtAction("GetAccountType", new { id = model.AccountTypeID }, model);
+            return CreatedAtAction("GetAccountType", new { id = model.AccountTypeId }, model);
         }
 
         [HttpDelete("{id}")]

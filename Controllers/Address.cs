@@ -42,7 +42,7 @@ namespace FinancialPortal.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAddress(long id, Address model)
         {
-            if (id != model.AddressID)
+            if (id != model.AddressId)
             {
                 return BadRequest();
             }
@@ -56,7 +56,7 @@ namespace FinancialPortal.Controllers
         public async Task<ActionResult<Address>> InsertAddress([FromBody] Address model)
         {
             await _repository.CreateAsync<Address>(model);
-            return CreatedAtAction("GetAddress", new { id = model.AddressID }, model);
+            return CreatedAtAction("GetAddress", new { id = model.AddressId }, model);
         }
 
         [HttpDelete("{id}")]
