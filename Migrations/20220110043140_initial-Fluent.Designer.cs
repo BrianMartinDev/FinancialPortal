@@ -3,15 +3,17 @@ using System;
 using FinancialPortal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FinancialPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220110043140_initial-Fluent")]
+    partial class initialFluent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,9 +69,6 @@ namespace FinancialPortal.Migrations
                     b.Property<string>("City")
                         .HasColumnType("text");
 
-                    b.Property<long?>("CustomerId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("PostalCode")
                         .HasColumnType("text");
 
@@ -80,8 +79,6 @@ namespace FinancialPortal.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("AddressId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Addresses");
                 });
@@ -157,6 +154,9 @@ namespace FinancialPortal.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Age")
                         .HasColumnType("text");
 
@@ -171,6 +171,9 @@ namespace FinancialPortal.Migrations
 
                     b.HasKey("CustomerId");
 
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
                     b.ToTable("Customers");
                 });
 
@@ -181,7 +184,13 @@ namespace FinancialPortal.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<long?>("CustomerId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("CustomerAccountId");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
 
                     b.ToTable("CustomerAccounts");
                 });
@@ -449,17 +458,26 @@ namespace FinancialPortal.Migrations
             modelBuilder.Entity("FinancialPortal.Models.Account", b =>
                 {
                     b.HasOne("FinancialPortal.Models.Customer", "Customer")
-                        .WithMany("Accounts")
+                        .WithMany()
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("FinancialPortal.Models.Address", b =>
+            modelBuilder.Entity("FinancialPortal.Models.Customer", b =>
+                {
+                    b.HasOne("FinancialPortal.Models.Address", "Address")
+                        .WithOne("Customer")
+                        .HasForeignKey("FinancialPortal.Models.Customer", "AddressId");
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("FinancialPortal.Models.CustomerAccount", b =>
                 {
                     b.HasOne("FinancialPortal.Models.Customer", "Customer")
-                        .WithMany("Addresses")
-                        .HasForeignKey("CustomerId");
+                        .WithOne("CustomerAccount")
+                        .HasForeignKey("FinancialPortal.Models.CustomerAccount", "CustomerId");
 
                     b.Navigation("Customer");
                 });
@@ -529,11 +547,14 @@ namespace FinancialPortal.Migrations
                     b.Navigation("Transactions");
                 });
 
+            modelBuilder.Entity("FinancialPortal.Models.Address", b =>
+                {
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("FinancialPortal.Models.Customer", b =>
                 {
-                    b.Navigation("Accounts");
-
-                    b.Navigation("Addresses");
+                    b.Navigation("CustomerAccount");
                 });
 #pragma warning restore 612, 618
         }

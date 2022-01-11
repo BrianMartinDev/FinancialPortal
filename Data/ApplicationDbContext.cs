@@ -28,14 +28,55 @@ namespace FinancialPortal.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<CustomerAccount>()
-                .HasOne<Customer>(e => e.Customer).WithOne().IsRequired(true).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<CustomerAccount>()
-                .HasOne<Account>(e => e.Account).WithOne().IsRequired(true).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Customer>()
-                .HasOne<Address>(e => e.Address).WithOne().IsRequired(true).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Account>()
-                .HasOne<AccountType>(e => e.AccountType).WithOne().IsRequired(true).OnDelete(DeleteBehavior.Cascade);
+            //// Account Table
+            //modelBuilder.Entity<Account>()
+            //    .HasOne<AccountType>(e => e.AccountType)
+            //    .WithOne(e => e.AccountTypeId\).IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Country>()
+            //.HasOne(a => a.CapitalCity)
+            //.WithOne(a => a.Country)
+            //.HasForeignKey<CapitalCity>(c => c.CountryID);
+
+            //// AccountType Table
+            //modelBuilder.Entity<AccountType>()
+            //    .HasOne<Account>(s => s.Account)
+            //    .WithOne(g => g.AccountType)
+            //    .IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //// Address Table
+            //modelBuilder.Entity<Address>()
+            //    .HasOne<Customer>(s => s.Customer)
+            //    .WithMany(g => g.Address)
+            //    .HasForeignKey(s => s.AddressId)
+            //    .IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade); ;
+
+            //// Customer Table
+            //modelBuilder.Entity<Customer>()
+            //    .HasMany<Address>(e => e.Address)
+            //    .WithOne(x => x.Customer)
+            //    .IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //// CustomerAccount Table
+            //modelBuilder.Entity<CustomerAccount>()
+            //    .HasOne<Customer>(e => e.Customer)
+            //    .WithOne(e => e.CustomerAccount)
+            //    .IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //// CustomerAccount Table
+            //modelBuilder.Entity<CustomerAccount>()
+            //    .HasMany<Account>(e => e.Account)
+            //    .WithOne(e => e.CustomerAccount)
+            //    .IsRequired(true)
+            //    .OnDelete(DeleteBehavior.Cascade);
+ 
+ 
+ 
 
             base.OnModelCreating(modelBuilder);
 

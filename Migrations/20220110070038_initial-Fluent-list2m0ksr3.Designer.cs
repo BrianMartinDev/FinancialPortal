@@ -3,15 +3,17 @@ using System;
 using FinancialPortal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FinancialPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220110070038_initial-Fluent-list2m0ksr3")]
+    partial class initialFluentlist2m0ksr3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,6 +162,9 @@ namespace FinancialPortal.Migrations
                     b.Property<string>("Age")
                         .HasColumnType("text");
 
+                    b.Property<long>("CustomerAccountId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
 
@@ -170,6 +175,9 @@ namespace FinancialPortal.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("CustomerId");
+
+                    b.HasIndex("CustomerAccountId")
+                        .IsUnique();
 
                     b.ToTable("Customers");
                 });
@@ -464,6 +472,17 @@ namespace FinancialPortal.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("FinancialPortal.Models.Customer", b =>
+                {
+                    b.HasOne("FinancialPortal.Models.CustomerAccount", "CustomerAccount")
+                        .WithOne("Customer")
+                        .HasForeignKey("FinancialPortal.Models.Customer", "CustomerAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerAccount");
+                });
+
             modelBuilder.Entity("FinancialPortal.Models.Transaction", b =>
                 {
                     b.HasOne("FinancialPortal.Models.Account", "Account")
@@ -534,6 +553,11 @@ namespace FinancialPortal.Migrations
                     b.Navigation("Accounts");
 
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("FinancialPortal.Models.CustomerAccount", b =>
+                {
+                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

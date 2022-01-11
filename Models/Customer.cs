@@ -1,29 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace FinancialPortal.Models
 {
-    //A customer can have many accounts.
+    
     public class Customer
     {
         //https://stackoverflow.com/questions/23811912/database-of-bank-accounts
-        [Key]
         public long CustomerId { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public int Age { get; set; }
+        public string Age { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public Address Address { get; set; }
+        //A customer can have many Addresses.
+        public IList<Address> Addresses { get; } = new List<Address>(); // Collection navigation
 
-        [ForeignKey("Address")]
-        public long AddressFKId { get; set; }
+        //A customer can have many Accounts.
+        public IList<Account> Accounts { get; } = new List<Account>(); // Collection navigation
+
 
     }
 }

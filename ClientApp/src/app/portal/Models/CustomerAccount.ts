@@ -3,7 +3,7 @@ import { Customer } from "./Customer";
 
 export class CustomerAccount {
   customerAccountID: number;
-  Customer!: Customer;
+  Customer: Customer = new Customer;
   Account!: Account;
 
 constructor() {
