@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PortalCardsComponent } from './portal/portal-cards/portal-cards.component';
 import { TopNavBarComponent } from './portal/top-nav-bar/top-nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './acount/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     PortalAccountSummaryComponent,
     PortalAccountsComponent,
     PortalSummaryComponent,
-    PortalCardsComponent
+    PortalCardsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
